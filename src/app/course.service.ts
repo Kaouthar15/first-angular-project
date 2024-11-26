@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Course } from './course/course';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CourseService {
 
-  constructor() { }
+  constructor(private http : HttpClient) { }
 
   getCourses(): Observable<Course[]>{
-    return of(      
-      [{title:"1stClass",nb_student:23 },
-      {title:"2ndClass",nb_student:16 },
-      {title:"3rdClass",nb_student:27 }]
+    return this.http.get<Course[]>(
+        "http://127.0.0.1/api/courses"
     )
   }
 }
