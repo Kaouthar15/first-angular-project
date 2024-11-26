@@ -15,23 +15,23 @@ import { CourseService } from '../course.service';
 export class CoursesComponent implements OnInit {
 
   title!: "Courses Lists !";
-  UE : Course[];
+  UE! : Course[];
   nb_students!:number;
+  
+  onNewNb(delta: number) {
+    this.nb_students += delta;
+  }
+
+  constructor(private service :  CourseService){}
+  ngOnInit() {
+    this.getNbStudent();
+    this.UE = this.service.getCourses();  
+  }
+
   getTitle(){return this.title;}
 
   getNbStudent(){
     this.nb_students = 0;
     for(let ue of this.UE) this.nb_students += ue.nb_student;
-  }
-  onNewNb(delta: number) {
-    this.nb_students += delta;
-  }
-
-  constructor(){
-    let service = new CourseService();
-    this.UE = service.getCourses();
-  }
-  ngOnInit() {
-    this.getNbStudent();
   }
 }
