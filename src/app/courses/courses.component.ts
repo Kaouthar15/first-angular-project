@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Course } from '../course/course';
 import { CourseComponent } from "../course/course.component";
 import { CommonModule } from '@angular/common';
+import { CourseService } from '../course.service';
 
 @Component({
   selector: 'app-courses',
@@ -14,8 +15,8 @@ import { CommonModule } from '@angular/common';
 export class CoursesComponent implements OnInit {
 
   title!: "Courses Lists !";
-  UE : Course[] = [{title:"c1",nb_student:1},{title:"c2",nb_student:2}]
-  nb_students:number=0;
+  UE : Course[];
+  nb_students!:number;
   getTitle(){return this.title;}
 
   getNbStudent(){
@@ -26,7 +27,11 @@ export class CoursesComponent implements OnInit {
     this.nb_students += delta;
   }
 
-  constructor(){}
+  constructor(){
+    let service = new CourseService();
+    this.UE = service.getCourses();
+  }
   ngOnInit() {
+    this.getNbStudent();
   }
 }

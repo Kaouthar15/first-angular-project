@@ -1,6 +1,8 @@
 <p>Title: {{ title }}</p>
 <input type="text" [(ngModel)]="title" />
 <h3>Total Students: {{ nb_students }}</h3>
+<p *ngIf="nb_students < 10">Few Students</p>
+<p *ngIf="nb_students > 10">Many Students</p>
 <div *ngFor="let course of UE">
   <app-course [content]="course" (newNb)="onNewNb($event)"></app-course>
 </div>
