@@ -1,4 +1,4 @@
 <p>Title : {{title}}</p>
 <input type="text" [(ngModel)]="title"/>
-<app-course [content]="UE[0]"></app-course>
-<app-course [content]="UE[1]"></app-course>
+<app-course [content]="UE[0]" (newNb)="onNewNb($event)"></app-course>
+<app-course [content]="UE[1]" (newNb)="onNewNb($event)"></app-course>
