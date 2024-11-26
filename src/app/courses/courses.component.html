@@ -1,4 +1,6 @@
-<p>Title : {{title}}</p>
-<input type="text" [(ngModel)]="title"/>
-<app-course [content]="UE[0]" (newNb)="onNewNb($event)"></app-course>
-<app-course [content]="UE[1]" (newNb)="onNewNb($event)"></app-course>
+<p>Title: {{ title }}</p>
+<input type="text" [(ngModel)]="title" />
+<h3>Total Students: {{ nb_students }}</h3>
+<div *ngFor="let course of UE">
+  <app-course [content]="course" (newNb)="onNewNb($event)"></app-course>
+</div>
